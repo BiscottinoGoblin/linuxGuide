@@ -278,3 +278,60 @@ go to
 and change the settings for 
 ---->  executable text file.
 
+
+
+/*
+*
+*	FAO
+*
+*/
+
+//Very large log files, what should I do?
+Simply delete these files and then reboot?
+No. Empty them but do not use rm because it could end up crashing something while 
+you are typing the touch command to recreate it.
+Shortest method:
+
+---% cd /var/log
+---% sudo su
+---% > lastlog
+---% > wtmp
+---% > dpkg.log 
+---% > kern.log
+---% > syslog
+---% exit
+
+BEFORE YOU DO THAT. Do a tail {logfile} and check if there is a reason for them to be so big. 
+Unless this system is several years old there should be no reason for this and fixing the problem 
+is better than letting this go on.
+
+And to prevent it to become that big in the future: setup logrotate. 
+It is pretty straightforward and will compress the logfile when 
+it becomes bigger then a size you set it to.
+
+
+//gitCommit
+---% git add <file-name, try through TAB>
+---% git commit -a <*all*> -m "<commit message>"
+
+
+//gitPull
+---% git pull -f <*forse*> <repository>
+
+
+//git change branch
+---% git checkout -b <*new branch*> <branch name>
+or
+---% git checkout <branch name>
+
+
+//Slow shutdown on Ubuntu
+
+
+//How can I adjust the mouse scroll speed?
+---% $ xinput set-prop <devnum> "Evdev Scrolling Distance" 8 1 1 # for smooth scroll
+---% $ xinput set-prop <devnum> "Evdev Scrolling Distance" -8 1 1 # for smooth 'natural' scroll
+Add this to your .profile file in home/user to apply on login
+To get the <devnum>=9 run 
+---% xinput list
+
